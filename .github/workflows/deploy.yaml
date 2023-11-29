@@ -1,0 +1,34 @@
+  name: CI / CD Test
+  on:
+    push:
+      branches:
+        - main
+  jobs:
+    build-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v2
+
+        - name: Build Docker Image
+          run: docker build -t my-api-app .
+
+        - name: Copy Docker Image to Remote Server
+          uses: appleboy/scp-action@master
+          with:
+            host: ${{ secrets.REMOTE_HOST }}
+            username: ${{ secrets.REMOTE_USER }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            source: "path/to/your/docker-image.tar"
+            target: "remote/path"
+
+        - name: Deploy Docker Image on Remote Server
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.REMOTE_HOST }}
+            username: ${{ secrets.REMOTE_USER }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            script: |
+              docker load < docker-image.tar
+              docker stop old-container || true
+              docker run -d --name new-container your-image-name

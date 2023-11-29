@@ -30,5 +30,8 @@ COPY --from=builder /usr/src/app/dist ./dist
 # Copy the .env file into the container image
 COPY .env ./
 
+# Create upload directory
+# RUN mkdir ./upload
+
 EXPOSE 8000
 CMD [ "node", "dist/app.js" ]

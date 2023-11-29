@@ -1,0 +1,10 @@
+services:
+  simple-api-service:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - ./upload:/usr/src/app
+    ports:
+      - 8000:8000
+    environment:
+      PORT: 8000

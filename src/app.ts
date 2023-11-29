@@ -31,10 +31,13 @@ router.get('/user', async (ctx: Context): Promise<void> => {
     }
 })
 router.get("/list", async (ctx: Context): Promise<void> => {
+    console.log('TEST');
+    const data = await scanDir();
+    console.log(data);
     ctx.body = {
         success: true,
         payload: {
-            message: await scanDir()
+            message: data
         }
     }
 })

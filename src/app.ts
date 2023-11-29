@@ -6,7 +6,7 @@ import {config} from "./config";
 
 const app = new Koa();
 
-app.use(cors())
+// app.use(cors())
 
 app.use(bodyParser())
 
@@ -16,7 +16,16 @@ router.get('/', async (ctx: Context): Promise<void> => {
     ctx.body = {
         success: true,
         payload: {
-            message: "Hello!"
+            message: "Hello Anonymous!"
+        }
+    }
+})
+
+router.get('/user', async (ctx: Context): Promise<void> => {
+    ctx.body = {
+        success: true,
+        payload: {
+            message: "Hello from other instance of user service!"
         }
     }
 })

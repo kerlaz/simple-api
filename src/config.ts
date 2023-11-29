@@ -5,7 +5,7 @@ dotenv.config()
 
 
 export type TConfig = {
-    port: number,
+    port: string | number,
     dbUser: string,
     dbPassword: string,
     dbHost: string,
@@ -15,7 +15,7 @@ export const config: TConfig = {
     dbHost: process.env.DB_HOST,
     dbPassword: process.env.DB_PASSWORD,
     dbUser: process.env.DB_USER,
-    port: parseInt(process.env.PORT),
+    port: process.env.PORT || 8000,
     testValue: process.env.SOME_TEST_VALUE
 }
 

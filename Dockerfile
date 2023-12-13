@@ -4,13 +4,13 @@ ENV NODE_ENV production
 USER node
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR .
 
 # Install app dependencies
 COPY package*.json ./
 
-RUN npm install
 COPY --chown=node:node . .
+RUN npm install
 RUN npm run build
 
 # Copy the .env file into the container image

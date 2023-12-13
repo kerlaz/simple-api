@@ -1,16 +1,16 @@
-FROM node:lts
+FROM node:lts-alpine
 
 ENV NODE_ENV production
 USER node
 
 # Create app directory
-WORKDIR .
+WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
 
-COPY --chown=node:node . .
 RUN npm install
+COPY --chown=node:node . .
 RUN npm run build
 
 # Copy the .env file into the container image

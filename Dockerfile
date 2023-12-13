@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
+COPY tsconfig.json ./
 
 COPY --chown=node:node . .
 RUN npm install

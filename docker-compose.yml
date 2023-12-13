@@ -8,3 +8,18 @@ services:
       - 8000:8000
     environment:
       PORT: 8000
+    depends_on:
+      - redis
+      - simple-front
+
+  simple-front:
+    build: ../simple-front
+    volumes:
+      - .:/app
+    ports:
+      - 4000:4000
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379

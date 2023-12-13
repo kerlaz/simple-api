@@ -9,8 +9,8 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-RUN npm install
 COPY --chown=node:node . .
+RUN npm install
 RUN npm run build
 
 # Copy the .env file into the container image

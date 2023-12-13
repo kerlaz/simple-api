@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 COPY --chown=node:node . .
 RUN npm run build
 

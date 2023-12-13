@@ -38,4 +38,4 @@ jobs:
             docker load -i /opt/my-api-app.tar
             rm /opt/my-api-app.tar
             docker kill $(docker ps -q)
-            docker run -d tester/my-api-app:latest
+            docker run -d -p 127.0.0.1:8000:8000 tester/my-api-app:latest

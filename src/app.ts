@@ -32,7 +32,7 @@ router.get('/', async (ctx: Context): Promise<void> => {
     ctx.body = {
         success: true,
         payload: {
-            message: "It works!!! Awesome!!!"
+            message: "Alpine builds are great for production! Fast AND Furious"
         }
     }
 })

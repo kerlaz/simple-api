@@ -23,8 +23,8 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "path/to/your/docker-image.tar"
-          target: "remote/path"
+          source: "my-api-app.tar"
+          target: "/opt"
 
       - name: Deploy Docker Image on Remote Server
         uses: appleboy/ssh-action@master
@@ -33,6 +33,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker load < docker-image.tar
-            docker stop old-container || true
-            docker run -d --name new-container your-image-name
+            docker load -i /opt/my-api-app.tar
+            rm /opt/my-api-app.tar
+            docker kill $(docker ps -q)
+            docker run -d my-api-app:latest

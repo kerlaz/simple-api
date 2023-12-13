@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@inkoda/my-auth-req-contracts": "^1.0.2",
-    "@koa/cors": "^4.0.0",
+    "@koa/cors": "^5.0.0",
     "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-bodyparser": "^4.4.1",
